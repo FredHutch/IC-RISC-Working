@@ -1,4 +1,4 @@
-#### Version 0.7.1 (30 Aug 2017)
+#### Version 0.7.1a (30 Aug 2017)
 * minor changes to documentation
 
 #### Version 0.7.0 (16 Aug 2017)
