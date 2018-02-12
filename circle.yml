@@ -22,6 +22,6 @@ deployment:
     branch: master
     commands:
       - docker login --email fredhutch@fhcrc.org --username $DOCKERIMAGES_USER --password $DOCKERIMAGES_PASS https://dockerimages.fhcrc.org
-      - docker push dockerimages.fhcrc.org/gecco-figi:latest
+      - docker push dockerimages.fhcrc.org/ic-risc:latest
 #      - sleep 15
 #      - rancher-compose-v0.12.5/rancher-compose --project-name ic-risc --url https://ponderosa.fhcrc.org/v1/projects/1a195  --access-key $RANCHERAPI_KEY --secret-key $RANCHERAPI_SECRET up -d --pull --force-upgrade --confirm-upgrade ic-risc-working
