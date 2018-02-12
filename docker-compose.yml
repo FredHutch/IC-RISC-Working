@@ -1,0 +1,8 @@
+version: '2'
+services:
+  ic-risc:
+    image: dockerimages.fhcrc.org/ic-risc:latest
+    ports:
+    - "7777"
+    labels:
+      io.rancher.container.pull_image: always
