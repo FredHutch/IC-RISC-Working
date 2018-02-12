@@ -8,7 +8,7 @@ dependencies:
   override:
     - curl -LO https://github.com/rancher/rancher-compose/releases/download/v0.12.5/rancher-compose-linux-amd64-v0.12.5.tar.gz
     - tar zxf rancher-compose-linux-amd64-v0.12.5.tar.gz
-    - docker build -t dockerimages.fhcrc.org/fredhutch/ic-risc:latest . 
+    - docker build -t dockerimages.fhcrc.org/ic-risc:latest . 
     - docker images
 
 test:
