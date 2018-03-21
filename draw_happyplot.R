@@ -28,7 +28,7 @@ else {
 p= ggplot(happyfield, aes(xcol, ycol))  +
   geom_point(data= happyfield, mapping= aes(x= xcol, y= ycol, 
                                             color= factor(case)), 
-             size=3.0, shape= happyfield$case_shape)  +
+             size=2.8, shape= happyfield$case_shape)  +
   scale_shape_discrete() +
   scale_colour_manual(values = mycolors) +
   theme(legend.position=("none")) +

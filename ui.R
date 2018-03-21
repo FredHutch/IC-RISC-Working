@@ -40,19 +40,9 @@ tabPanel("About",
                              choices = c("Male/White"= 0, "Male/Black"= 1, "Female/White"= 2), selected= 0),
                 
                 sliderInput("age", label = p("Age", style="color:green"), value = 62, min= 40, max= 79),
-                
-                bsButton("pf_help", label="Medications", 
-                       style = "primary",
-                       size = "small", 
-                       type = "action"),
-                br(),br(),
-                
-                radioButtons("nsaid", label= p("Aspirin/NSAID use", style="color:green"), 
-                             choices = c("No"= 0, "Yes"= 1), selected= 0),
-                
-                radioButtons("statin", label= p("Statin use", style="color:green"), 
-                             choices = c("No"= 0, "Yes"= 1), selected= 0),
-                br()
+
+                                radioButtons("famhx", label= p("Family history", style="color:green"), 
+                              choices = list("No"= 0, "Yes"= 1), selected= 0)
               )),
             
               column(2, 
@@ -63,43 +53,53 @@ tabPanel("About",
                            type = "action"),
                   br(),br(),
                   
-                  radioButtons("famhx", label= p("Family history", style="color:green"), 
-                              choices = list("No"= 0, "Yes"= 1), selected= 0),
-                
-                  radioButtons("refluxfreq", label = p("Reflux symptoms", br(), "(off medication)", style="color:green"), 
+                  radioButtons("refluxfreq", label = p("Reflux symptoms", br(), "(off meds)", style="color:green"), 
                               choices= list("Rarely"= 0, "< Weekly"= 1, "Weekly - Daily"= 2, "> Daily" = 3), selected= 1),
                   
                   sliderInput("bmic", label = p("Body Mass Index", style="color:green"), min = 20, max = 45, value = 28),
                   
                   radioButtons("cig2", label = p("Cigarette use", style="color:green"), 
-                              choices = c("Never"= 0, "Ever"= 1), selected= 1),
-                  
-                  sliderInput("exercise", label= p("Physical activity", style="color:green"), min=1, max=4, value= 2)
+                              choices = c("Never"= 0, "Ever"= 1), selected= 1)
               )),
 
               column(2, 
 
                 wellPanel(
-                bsButton("cf_help", label="Screening results", 
-                         style = "primary",
-                         size = "small", 
-                         type = "action"),
+                bsButton("pf_help", label=p("Preventive", br(), "factors"), 
+                       style = "primary",
+                       size = "small", 
+                       type = "action"),
                 br(),br(),
                 
-                radioButtons("sim_status", label= p("SIM status", style="color:green"), 
-                             choices = list("Unknown"= 9, "Negative"= 0, "Positive"= 1), selected = 9),
+                  
+                sliderInput("exercise", label= p("Physical activity", style="color:green"), min=1, max=4, value= 2),
                 
-                conditionalPanel(
-                condition= "input.sim_status == 1",
-                radioButtons("segment", label = p("Segment length", style="color:green"), 
-                           choices= list("<1"= 0, "1 - 3"= 1, "4 - 6"= 2, "7 +" = 3), selected= 1),
+                radioButtons("nsaid", label= p("Aspirin/NSAID use", style="color:green"), 
+                             choices = c("No"= 0, "Yes"= 1), selected= 0),
+                
+                radioButtons("statin", label= p("Statin use", style="color:green"), 
+                             choices = c("No"= 0, "Yes"= 1), selected= 0),
+                br()
+                # bsButton("cf_help", label="Screening results", 
+                #          style = "primary",
+                #          size = "small", 
+                #          type = "action"),
+                # br(),br(),
+                # 
+                # radioButtons("sim_status", label= p("SIM status", style="color:green"), 
+                #              choices = list("Unknown"= 9, "Negative"= 0, "Positive"= 1), selected = 9),
+                # 
+                # conditionalPanel(
+                # condition= "input.sim_status == 1",
+                # radioButtons("segment", label = p("Segment length", style="color:green"), 
+                #            choices= list("<1"= 0, "1 - 3"= 1, "4 - 6"= 2, "7 +" = 3), selected= 1),
+                # 
+                # 
+                # radioButtons("biopsy", label= p("HG dysplasia or DNA abnorm", style="color:green"), 
+                #            choices = list("No"= 0, "Yes"= 1), selected = 0))),
+                # br(), br()
 
-              
-                radioButtons("biopsy", label= p("HG dysplasia or DNA abnorm", style="color:green"), 
-                           choices = list("No"= 0, "Yes"= 1), selected = 0))),
-                br(), br()
-
-              ),
+              )),
           
             column(6, plotOutput("myrisk"))
             )),

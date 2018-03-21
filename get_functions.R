@@ -3,12 +3,10 @@
 library(readxl)
 library(plyr)
 library(tidyverse)
-library(assertthat)
 library(ggplot2)
 library(cowplot)
 library(viridis)
 library(ggthemes)
-library(car)
 library(ggExtra)
 library(scales)
 library(xtable)
@@ -18,9 +16,11 @@ library(htmltools)
 library(shiny)
 library(shinyBS)
 library(shinythemes)
+# library(assertthat)
+# library(car)
 
 get_betas= function(sim) {     # READS AND RETURNS rr/se BASED ON SIM STATUS ====
-  assert_that(sim==0 | sim==1)
+  # assert_that(sim==0 | sim==1)
   newbees= read_excel("./required_files/relative risk documentation v2.xlsx")
   newbees= mutate(newbees, beta= abs(beta))     # convert betas to all positive 
                                                 # (to be consistent with input)
@@ -69,7 +69,7 @@ IREA= function(x, demo_, sim_) {  # AGE/RACE/SEX SPECIFIC INCIDENDE
 }
 
 MXEA= function(x, demo) {   # estimates age-specific mortality rate from model ====
-  assert_that(demo== "WM" | demo=="WF" | demo=="BM")
+  # assert_that(demo== "WM" | demo=="WF" | demo=="BM")
   if(demo== "WM"){
     mxea_age= ar_mort_WM$coefficients[1] + 
     ar_mort_WM$coefficients[2] * x + 

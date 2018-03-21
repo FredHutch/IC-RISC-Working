@@ -47,6 +47,7 @@ family.history= runif(nsim)
 statins= runif(nsim)
 physical.activity= runif(nsim)
 beacon_imp$cc= as.numeric(as.character(beacon_imp$cc))
+beacon_imp$site= as.numeric(as.character(beacon_imp$site))
 beacon_imp$sex= as.numeric(as.character(beacon_imp$sex))
 
 beacon_imp= cbind(beacon_imp, family.history, statins, physical.activity, race)
@@ -65,3 +66,5 @@ beacon_imp$race= ifelse(beacon_imp$cc==0,
 beacon_imp$sex = ifelse(beacon_imp$race== 2, 1, beacon_imp$sex)
 
 save(beacon_imp, file="beacon_imp.RData")
+
+source("batchme3.R")

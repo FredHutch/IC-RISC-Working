@@ -4,6 +4,9 @@ project_yrs= 10   ## defines period over which absolute risk is calculated
 
 load("beacon_imp.RData")
 beacon_imp$risk10= NA
+
+# Calculate 10 year risk for each record====
+
 for(i in 1:nrow(beacon_imp)) {
   parm_list1= beacon_imp[i,]
   indx <- sapply(parm_list1, is.factor)

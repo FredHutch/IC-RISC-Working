@@ -41,20 +41,36 @@ shinyServer(function(input, output) {
           
       agenow= input$age
       age= agenow-62
-      # agenow= age
-      bmi= recode(input$bmic, "20:24= 0; 25:29= 1; 30:34= 2; 35:39= 3; 40:60= 4; else=NA")
+
+      bmi= case_when(
+        input$bmic< 25 ~ 0,
+        input$bmic< 30 ~ 1,
+        input$bmic< 35 ~ 2,
+        input$bmic< 40 ~ 3,
+        input$bmic< 60 ~ 4,
+        TRUE ~ as.numeric(NA)
+        )
+      
+      physical.activity= case_when(
+        input$exercise== 4 ~ 0,
+        input$exercise== 3 ~ 1,
+        input$exercise== 2 ~ 2,
+        input$exercise== 1 ~ 3,
+        TRUE ~ as.numeric(NA)
+        )
+      
       smoking= as.integer(input$cig2)
       reflux= as.integer(input$refluxfreq)
       
       nsaids= ifelse(input$nsaid==1, 0, 1)    #flips to inverse
-      statins= ifelse(input$statin==1, 0, 1)  #flips
-      physical.activity= recode(input$exercise, "4=0; 3=1; 2=2; 1=3")  #flips
+      statins= ifelse(input$statin==1, 0, 1)  #flips to inverse
       
       family.history= as.integer(input$famhx)
-      biopsy.abn= as.integer(input$biopsy)
-      segment.length= as.integer(input$segment)
-      # aneuploidy= as.integer(input$aneuploidy)
-      sim_status= as.integer(input$sim_status)
+      sim_status= 0
+      # biopsy.abn= as.integer(input$biopsy)
+      # segment.length= as.integer(input$segment)
+      # # aneuploidy= as.integer(input$aneuploidy)
+      # sim_status= as.integer(input$sim_status)
 
       if(sim_status!= 1) {     #if not SIM positive, then biomarkers must = 0
         biopsy.abn= 0
@@ -66,7 +82,8 @@ shinyServer(function(input, output) {
 # draw thermomenter & calculates Mario 5 year risk and CI ====
       
       minenv= log(0.40)     # define upper and lower bounds of thermometer
-      maxenv= log(620)
+      maxenv= log(220)
+      # maxenv= log(620)
       p1= draw_therm(sim_status, agenow, minenv, maxenv, demog)
 
 # prepare input data for merging with betas (parm_list2)
