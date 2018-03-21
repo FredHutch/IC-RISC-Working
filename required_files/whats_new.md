@@ -1,5 +1,6 @@
-#### Version 0.7.1 (30 Aug 2017)
+#### Version 0.7.11 (21 Mar 2018)
 * minor changes to documentation
+* bump
 
 #### Version 0.7.0 (16 Aug 2017)
 * all risk projections are now for 10 years rather than 5 years
