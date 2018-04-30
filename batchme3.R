@@ -2,7 +2,6 @@
 
 project_yrs= 10   ## defines period over which absolute risk is calculated
 
-load("beacon_imp.RData")
 beacon_imp$risk10= NA
 
 # Calculate 10 year risk for each record====
@@ -42,3 +41,6 @@ for(i in 1:nrow(beacon_imp)) {
   mario_IR10= project_risk2(dataToUse$beta,PAR_prod, agenow-62, demog, sim_status, project_yrs)
   beacon_imp$risk10[i]= mario_IR10
 }
+
+source("batch_plot.R")
+

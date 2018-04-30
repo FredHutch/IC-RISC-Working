@@ -38,8 +38,8 @@ p1=
   labs(list(y= "EA incidence rate\n", x= "")) +
   scale_x_continuous(trans= "identity", breaks= NULL) + 
   scale_y_continuous(trans= "log10", 
-                     breaks= c(0.5, 1, 2, 5, 10, 20, 50, 100, 200), 
-                     labels= c(0.5, 1, 2, 5, 10, 20, 50, 100, 200))
+                     breaks= c(0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500), 
+                     labels= c(0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500))
 
 # Add comparison diseases ====
 
@@ -54,9 +54,6 @@ disease_comp= mutate(disease_comp, yleft= incidence10)
 
 # Filter on age and demographics
 # IGNORE INCIDENCE RATES OUTSIDE OF THERMOMETER RANGE
-
-# agenow= recode(agenow, "40:44=42; 45:49=47; 50:54=52; 55:59=57; 
-#                60:64=62; 65:69=67; 70:74=72; 75:79=77; else=NA")
 
 agenow= case_when(
   agenow< 45 ~ 42,

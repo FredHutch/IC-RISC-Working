@@ -6,7 +6,7 @@ x=seq(1,25, length= 25)
 y=seq(1,40, length= 40)
 
 happyfield= merge(x, y, by= NULL)
-happyfield= rename(happyfield, xcol=x, ycol=y)
+happyfield= dplyr::rename(happyfield, xcol=x, ycol=y)
 happyfield= arrange(happyfield, desc(ycol), xcol)
 
 happyfield= mutate(happyfield, newrow=seq(1:1000))
