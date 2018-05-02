@@ -8,17 +8,17 @@ library(ggthemes)
 shinyUI(navbarPage("IC-RISC", theme = shinytheme("spacelab"),inverse= TRUE,
 
 # about tab ====
-# tabPanel("About",
-#         #shinythemes::themeSelector(),
-# 
-#         fluidRow(
-#         column(1),
-#         column(10, wellPanel(h3("Personalized Risk Calculator for Esophageal Adenocarcinoma"), align="center"))),
-# 
-#         fluidRow(
-#         column(1),
-#         column(10, includeMarkdown("required_files/about_text.md"))
-#          )),
+tabPanel("About",
+        #shinythemes::themeSelector(),
+
+        fluidRow(
+        column(1),
+        column(10, wellPanel(h3("Personalized Risk Calculator for Esophageal Adenocarcinoma"), align="center"))),
+
+        fluidRow(
+        column(1),
+        column(10, includeMarkdown("required_files/about_text.md"))
+         )),
 
 #risk calculator tab ====
     tabPanel("Risk Calculator",
