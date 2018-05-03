@@ -1,6 +1,7 @@
 #### Version 0.7.1 (30 April 2018)
 * added low-grade dysplasia to risk calculator
 * updates to documentation, relative risks and references
+* correction applied to incidence among SIM-positive (Barrett's) persons
 
 #### Version 0.7.0 (16 Aug 2017)
 * all risk projections are now for 10 years rather than 5 years
