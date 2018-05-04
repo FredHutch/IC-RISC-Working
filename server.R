@@ -140,10 +140,14 @@ shinyServer(function(input, output) {
 # Define colors and shapes and labels====
       if(mario_IR5 > 500) {
         finalrisk= "> 500"
+        ntreatc= "> 1 in 2"
       } else if(mario_IR5 < 1.0) {
         finalrisk= "< 1"
+        ntreatc= "< 1 in 1,000"
       } else {
         finalrisk= as.character(round(mario_IR5,1))
+        ntreatn= as.character((round(1000/mario_IR5, 0)))
+        ntreatc= paste0("1 in ", ntreatn)
       }
 
       if(mario_IR5 > 500) {         # adjust color if incidence over max
@@ -152,20 +156,21 @@ shinyServer(function(input, output) {
         mpc = exp(maxenv) * 1.0
         }
 
-      if(mario_IR5 > 100) {         # color of dots
+      if(mario_IR5 > 100) {         # color
         mycolor= "#cc0000"          #red
-      } else if(mario_IR5 > 10) {
+      } else if(mario_IR5 > 20) {
         mycolor= "purple"
-      } else if(mario_IR5 > 1) {
+      } else if(mario_IR5 > 5) {
         mycolor= "blue"
       } else {
-        mycolor= "#336600"          #green
+        mycolor= "darkgreen"          #green
+        # mycolor= "#336600"          #green
       }
 
-    ntreat= round(1000/mario_IR5)
+    # ntreat= round(1000/mario_IR5)
     risklabel= paste0("Estimated 10-year risk")
     risklabel2= paste0(finalrisk, " per 1,000")
-    risklabel3= paste0("1 in ", ntreat, " people")
+    risklabel3= paste0(ntreatc, " people")
 
     mario_gscore= (maxenv- minenv)*0.16+ minenv   # ADJUSTS LEFT-MOST EDGE OF  POINTER
     meme= data.frame(mario_gscore, mario_IR5_therm,     # NEEDS TO BE DATA FRAME TO WORK WITH GGPLOT

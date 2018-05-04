@@ -60,7 +60,7 @@ tabPanel("About",
                                  br(),
                                  "Click blue buttons for more information",
                                  br(),
-                                 style = "color:red", align= "center", size= "large"),
+                                 style = "color:#cc0000", align= "center", size= "large"),
                 br(),
                 wellPanel(
                   bsButton("rf_help", label=p("Risk", br(), "factors"),
@@ -82,7 +82,7 @@ tabPanel("About",
                   ),
                   sliderInput("bmic", label = p("Body Mass Index", style="color:green"), min = 20, max = 45, value = 28),
                   radioButtons("cig2", label = p("Cigarette use", style="color:green"),
-                              choices = c("Never"= 0, "Ever"= 1), selected= 1)
+                              choices = c("Never"= 0, "Ever"= 1), selected= 0)
               )),
 
               column(2,
