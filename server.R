@@ -96,7 +96,7 @@ shinyServer(function(input, output) {
       rownames(parm_list2)= NULL
       parm_list2$Risk_Factor= temp_parm_names
       parm_list2= dplyr::rename(parm_list2, parm_val= V1)
-      
+
 # get beta coefficients and standard errors; merge with exposure levels (parm list)
 
       beta_list2= get_betas(sim_status)
@@ -206,7 +206,7 @@ shinyServer(function(input, output) {
 
       pphappy= draw_happyplot(round(mario_IR5))
       foot1= "- Vertical bar at tip of pointer indicates confidence band\n"
-      foot2= "- Death rates for selected causes (on right) are specific for age/sex/race\n"
+      foot2= "- 10 year death rates for selected causes (on right) are specific for age/sex/race\n"
 
       mytitle= ggdraw() + draw_label(risklabel, x = 0.5, y = 0.8, size = 22, colour= "black") +
         draw_label(risklabel2, x = 0.24, y = .24, size = 20, hjust= 0.3, colour= mycolor) +
@@ -272,7 +272,7 @@ output$myPA= renderUI({
 output$rainforest = renderPlot({
 
 get_rf_plot= function(sim) {
-  maxCI= 30  
+  maxCI= 30
   rforest0= as.data.frame(read_excel("./required_files/relative risks.xlsx"))
   rforest0= mutate(rforest0, rflevel2= ifelse(rforest0$rflevel_cat==0, # indents levels for output
                                             as.character(rforest0$Risk_Factor_level),
