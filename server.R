@@ -51,7 +51,7 @@ shinyServer(function(input, output) {
         TRUE ~ as.numeric(NA)
         )
 
-      physical.activity= case_when(
+      physical.activity= case_when(       # reverses phys activity input
         input$exercise== 4 ~ 0,
         input$exercise== 3 ~ 1,
         input$exercise== 2 ~ 2,
@@ -66,30 +66,30 @@ shinyServer(function(input, output) {
       statins= ifelse(input$statin==1, 0, 1)  #flips to inverse
 
       family.history= as.integer(input$famhx)
-      # sim_status= 0
+
       biopsy.abn= as.integer(input$biopsy)
       segment.length= as.integer(input$segment)
-      # aneuploidy= as.integer(input$aneuploidy)
-      sim_status= as.integer(input$sim_status)
 
+      sim_status= as.integer(input$sim_status)
+      screen.neg= ifelse(sim_status==0, 0, 1)   #this reverses screen.neg because protective
+
+# not sure if needed:
       if(sim_status!= 1) {     #if not SIM positive, then biomarkers must = 0
         biopsy.abn= 0
         segment.length= 0
-        # aneuploidy= 0
         sim_status= 0
       }
 
 # draw thermomenter & calculates Mario 5 year risk and CI ====
 
       minenv= log(0.40)     # define upper and lower bounds of thermometer
-      maxenv= log(540)
-      # maxenv= log(620)
+      maxenv= log(540)      # maxenv= log(620)
       p1= draw_therm(sim_status, agenow, minenv, maxenv, demog)
 
 # prepare input data for merging with betas (creates parm_list2)
 
       parm_list1= data.frame(reflux, smoking, bmi, nsaids, statins, physical.activity,
-                             family.history, biopsy.abn, segment.length)
+                             family.history, biopsy.abn, segment.length, screen.neg)
 
       temp_parm_names= colnames(parm_list1)
       parm_list2= as.data.frame(t(parm_list1))
@@ -100,6 +100,7 @@ shinyServer(function(input, output) {
 # get beta coefficients and standard errors; merge with exposure levels (parm list)
 
       beta_list2= get_betas(sim_status)
+      
       beta_list3= merge(parm_list2, beta_list2,
                         by.x=c("Risk_Factor", "parm_val"),
                         by.y= c("Risk_Factor", "rflevel_cat"))
@@ -120,7 +121,6 @@ shinyServer(function(input, output) {
       mario_RR= exp(mario_ebeta)
 
       mario_IR5= project_risk2(dataToUse$beta, PAR_prod, agenow-62, demog, sim_status, project_yrs)
-      # mario_IR5_orig= mario_IR5
 
 # Variance estimate (compute_var) (epsilon set in "par.R")
 
@@ -167,7 +167,6 @@ shinyServer(function(input, output) {
         # mycolor= "#336600"          #green
       }
 
-    # ntreat= round(1000/mario_IR5)
     risklabel= paste0("Estimated 10-year risk")
     risklabel2= paste0(finalrisk, " per 1,000")
     risklabel3= paste0(ntreatc, " people")

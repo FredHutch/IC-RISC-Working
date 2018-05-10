@@ -74,12 +74,11 @@ tabPanel("About",
                   conditionalPanel(condition= "input.sim_status != 1",
                     
                   radioButtons("famhx", label= p("Family history", style="color:green"),
-                               choices = list("No"= 0, "Yes"= 1), selected= 0),
-                  
+                               choices = list("No"= 0, "Yes"= 1), selected= 0)
+                  ),
                   
                   radioButtons("refluxfreq", label = p("Reflux symptoms", br(), "(off meds)", style="color:green"),
-                              choices= list("Rarely"= 0, "< Weekly"= 1, "Weekly - Daily"= 2, "> Daily" = 3), selected= 1)
-                  ),
+                              choices= list("Rarely"= 0, "< Weekly"= 1, "Weekly - Daily"= 2, "> Daily" = 3), selected= 1),
                   sliderInput("bmic", label = p("Body Mass Index", style="color:green"), min = 20, max = 45, value = 28),
                   radioButtons("cig2", label = p("Cigarette use", style="color:green"),
                               choices = c("Never"= 0, "Ever"= 1), selected= 0)
