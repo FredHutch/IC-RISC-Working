@@ -4,6 +4,8 @@ library(shiny)
 library(shinyBS)
 library(shinythemes)
 library(ggthemes)
+# library(rsconnect)
+if (!require(rsconnect)) install.packages('rsconnect')
 library(rsconnect)
 
 shinyUI(navbarPage("IC-RISC", theme = shinytheme("spacelab"),inverse= TRUE,
