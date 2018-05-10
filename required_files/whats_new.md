@@ -1,3 +1,7 @@
+#### Version 0.7.2 (10 May 2018)
+* added screen-negative effect to calculator (SIM-negative stratum(
+* added reflux to SIM-positive stratum
+
 #### Version 0.7.1 (30 April 2018)
 * added low-grade dysplasia to risk calculator
 * updates to documentation, relative risks and references

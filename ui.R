@@ -4,6 +4,7 @@ library(shiny)
 library(shinyBS)
 library(shinythemes)
 library(ggthemes)
+library(rsconnect)
 
 shinyUI(navbarPage("IC-RISC", theme = shinytheme("spacelab"),inverse= TRUE,
 
