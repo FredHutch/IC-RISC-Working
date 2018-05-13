@@ -47,7 +47,7 @@ tabPanel("About",
                          size = "medium",
                          type = "action"),
                 br(),
-                # conditionalPanel(condition= "input.sim_status != 1",
+                
                 sliderInput("exercise", label= p("Physical activity", style="color:green"), min=1, max=4, value= 2),
                 
                 radioButtons("nsaid", label= p("Aspirin/NSAID use", style="color:green"),
@@ -74,7 +74,7 @@ tabPanel("About",
 
                 
                   br(),
-                  conditionalPanel(condition= "input.sim_status != 1",
+                  conditionalPanel(condition= "input.simstatus != 1",
                     
                   radioButtons("famhx", label= p("Family history", style="color:green"),
                                choices = list("No"= 0, "Yes"= 1), selected= 0)
@@ -99,19 +99,17 @@ tabPanel("About",
                          type = "action"),
                 br(),
 
-                radioButtons("sim_status", label= p("SIM status", style="color:green"),
+                radioButtons("simstatus", label= p("SIM status", style="color:green"),
                              choices = list("Unknown"= 9, "Negative"= 0, "Positive"= 1), selected = 9),
 
                 conditionalPanel(
-                condition= "input.sim_status == 1",
+                condition= "input.simstatus == 1",
                 radioButtons("segment", label = p("Segment length", style="color:green"),
                            choices= list("<1"= 0, "1 - 3"= 1, "4 - 6"= 2, "7 +" = 3), selected= 1),
 
                 radioButtons("biopsy", label= p("Biopsy results", style="color:green"),
                              choices = c("No dysplasia"= 0, "LG dysp only"= 1, "HG dysp or abnorm DNA or p53"= 2), selected= 0))),
 
-                # radioButtons("biopsy", label= p("HG dysplasia or DNA abnorm", style="color:green"),
-                #            choices = list("No"= 0, "Yes"= 1), selected = 0))),
                 br(), br()
 
               ),

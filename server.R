@@ -70,8 +70,9 @@ shinyServer(function(input, output) {
       biopsy.abn= as.integer(input$biopsy)
       segment.length= as.integer(input$segment)
 
-      sim_status= as.integer(input$sim_status)
-      screen.neg= ifelse(sim_status==0, 0, 1)   #this reverses screen.neg because protective
+      sim_status= as.integer(input$simstatus)
+      screen.neg= ifelse(input$simstatus==0, 1, 0)
+      screen.neg= ifelse(screen.neg==1, 0, 1)    #this reverses screen.neg because protective 1= SIM pos or unknown
 
 # not sure if needed:
       if(sim_status!= 1) {     #if not SIM positive, then biomarkers must = 0
@@ -114,6 +115,7 @@ shinyServer(function(input, output) {
         PAR_pert= PAR_pert_pos
       }
       dataToUse = merge(PAR_pert, beta_list3, "Risk_Factor")
+      # View(dataToUse)
 
 # Risk estimate (project_risk)
 

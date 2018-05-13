@@ -7,6 +7,9 @@ library(dplyr)
 
 beacon= read_excel("./indata/beagess_IC-RISC.xlsx")
 
+# beacon= filter(beacon, age !=-9, age>= 40, age<=79, site != "30", site != "55",
+#                site != "21", site != "11", site != "12", site != "13", site != "14",
+#                site!= "18", site != "19")
 beacon= filter(beacon, age !=-9, age>= 40, age<=79, site != "30", site != "55",
                site != "21", site != "11", site != "12", site != "13", site != "14",
                site!= "18", site != "19", site!= "27")
@@ -33,7 +36,7 @@ rm(beacon, mdf, mdf2)
 nsim <- nrow(beacon_imp)
 set.seed(492898)
 
-beacon_imp= rename(beacon_imp,
+beacon_imp= dplyr::rename(beacon_imp,
                    nsaids= nsaid_ever,
                    reflux= hb_rf_freq,
                    bmi= bmi5,
@@ -62,6 +65,8 @@ beacon_imp$race= ifelse(beacon_imp$cc==0,
                                   cut(race, c(0, 0.85, 1), labels= c(1,2)),
                                   cut(race, c(0, 0.966, 1), labels= c(1,2)))
 beacon_imp$sex = ifelse(beacon_imp$race== 2, 1, beacon_imp$sex)
+beacon_imp$screen.neg= 0
+beacon_imp$screen.neg= as.numeric(as.character(as.factor(beacon_imp$screen.neg)))
 
 source("batchme3.R")
 p_4
