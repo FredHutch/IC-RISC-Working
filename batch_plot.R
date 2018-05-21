@@ -127,20 +127,20 @@ psens= ggplot(tres, aes(threshold, sensitivity)) +
         axis.text.x=element_blank())
   psens= addvertlines(psens)
 
-# pspec= ggplot(tres, aes(threshold, specificity)) +
-#   geom_point() +
-#   expand_limits(x=c(-1.5, (toprisk+1.5))) +
-#   scale_x_continuous(breaks= c(seq(0,toprisk,2))) +
-#   scale_y_continuous(breaks= c(seq(0.5, 1.0, .1)), limits= c(0.5,1.0)) +
-#   xlab(NULL) +
-#   theme(panel.grid.major.y = element_line(colour="darkgray", size=0.5),
-#         axis.text.x=element_blank())
-#   pspec= addvertlines(pspec)
-# 
-# p_3= ggdraw() +
-#   draw_plot(p1, 0, 0, 1,.46) +
-#   draw_plot(pppv, 0, .46, 1, .26) +
-#   draw_plot(psens, 0, .72, 1, .26)
+pspec= ggplot(tres, aes(threshold, specificity)) +
+  geom_point() +
+  expand_limits(x=c(-1.5, (toprisk+1.5))) +
+  scale_x_continuous(breaks= c(seq(0,toprisk,2))) +
+  scale_y_continuous(breaks= c(seq(0.5, 1.0, .1)), limits= c(0.5,1.0)) +
+  xlab(NULL) +
+  theme(panel.grid.major.y = element_line(colour="darkgray", size=0.5),
+        axis.text.x=element_blank())
+  pspec= addvertlines(pspec)
+
+p_3= ggdraw() +
+  draw_plot(p1, 0, 0, 1,.46) +
+  draw_plot(pppv, 0, .46, 1, .26) +
+  draw_plot(psens, 0, .72, 1, .26)
 # p_3
 
 pfp= ggplot(tres, aes(threshold, endosav)) +
@@ -155,10 +155,11 @@ pfp= ggplot(tres, aes(threshold, endosav)) +
 pfp= addvertlines(pfp)
 
 p_4= ggdraw() +
-draw_plot(p1, 0, 0, 1,.34) +
-draw_plot(pppv, 0, .34, 1, .26) +
+draw_plot(p1, 0, 0, 1,.40) +
+draw_plot(pppv, 0, .40, 1, .20) +
 draw_plot(psens, 0, .60, 1, .20) +
-draw_plot(pfp, 0, .80, 1, .20)
+draw_plot(pspec, 0, .80, 1, .20)
+# draw_plot(pfp, 0, .80, 1, .20)
 p_4
 
 if(FALSE) {

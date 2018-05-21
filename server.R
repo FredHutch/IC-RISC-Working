@@ -71,20 +71,20 @@ shinyServer(function(input, output) {
       segment.length= as.integer(input$segment)
 
       sim_status= as.integer(input$simstatus)
-      screen.neg= ifelse(input$simstatus==0, 1, 0)
+      screen.neg= ifelse(input$simstatus==0, 1, 0)  # 1-> has been screened and found to be SIM negative
+                                                    # 0-> either not screened or SIM positive
       screen.neg= ifelse(screen.neg==1, 0, 1)    #this reverses screen.neg because protective 1= SIM pos or unknown
 
-# not sure if needed:
       if(sim_status!= 1) {     #if not SIM positive, then biomarkers must = 0
         biopsy.abn= 0
         segment.length= 0
         sim_status= 0
       }
 
-# draw thermomenter & calculates Mario 5 year risk and CI ====
+# draw thermomenter & calculates Mario 10 year risk and CI ====
 
       minenv= log(0.40)     # define upper and lower bounds of thermometer
-      maxenv= log(540)      # maxenv= log(620)
+      maxenv= log(540)
       p1= draw_therm(sim_status, agenow, minenv, maxenv, demog)
 
 # prepare input data for merging with betas (creates parm_list2)
@@ -115,8 +115,7 @@ shinyServer(function(input, output) {
         PAR_pert= PAR_pert_pos
       }
       dataToUse = merge(PAR_pert, beta_list3, "Risk_Factor")
-      # View(dataToUse)
-
+      
 # Risk estimate (project_risk)
 
       mario_ebeta= sum(dataToUse$beta)
@@ -170,8 +169,8 @@ shinyServer(function(input, output) {
       }
 
     risklabel= paste0("Estimated 10-year risk")
-    risklabel2= paste0(finalrisk, " per 1,000")
-    risklabel3= paste0(ntreatc, " people")
+    risklabel2= paste0(finalrisk, " per 1,000  ", "(", ntreatc, " people)")
+    # risklabel3= paste0(ntreatc, " people")
 
     mario_gscore= (maxenv- minenv)*0.16+ minenv   # ADJUSTS LEFT-MOST EDGE OF  POINTER
     meme= data.frame(mario_gscore, mario_IR5_therm,     # NEEDS TO BE DATA FRAME TO WORK WITH GGPLOT
@@ -207,23 +206,23 @@ shinyServer(function(input, output) {
 
       pphappy= draw_happyplot(round(mario_IR5))
       foot1= "- Vertical bar at tip of pointer indicates confidence band\n"
-      foot2= "- 10 year death rates for selected causes (on right) are specific for age/sex/race\n"
+      foot2= "- Death rates for selected causes are specific for age/sex/race\n"
 
       mytitle= ggdraw() + draw_label(risklabel, x = 0.5, y = 0.8, size = 22, colour= "black") +
-        draw_label(risklabel2, x = 0.24, y = .24, size = 20, hjust= 0.3, colour= mycolor) +
-        draw_label(risklabel3, x = 0.76, y = .24, size = 20, colour= mycolor)
+        draw_label(risklabel2, x = 0.5, y = .24, size = 20, hjust= 0.5, colour= mycolor) 
+        # draw_label(risklabel3, x = 0.76, y = .24, size = 20, colour= mycolor)
 
       dualplot= ggdraw() +
       draw_plot(p1, 0, .02, 0.46, 1) +
       draw_plot(pphappy, 0.48, 0.02, .52, 1.0) +
       draw_plot_label(paste0(foot1, foot2),
-                      .08, .1, size= 10, hjust= 0, colour= "darkblue")
+                      .08, .1, size= 12, hjust= 0, colour= "darkgreen")
 
       triplot= plot_grid(mytitle, dualplot, ncol=1, rel_heights = c(0.1, 1.2))
 
       }, message = "Preparing graphs... Please wait")
     return(triplot)
-  }, height= 710, width= "auto")
+  }, height= 760, width= "auto")
 
 ###############################  OUTPUTS RR SIM_NEG TABLE ====
   output$mytable_neg= renderTable({

@@ -47,10 +47,13 @@ race= runif(nsim)
 family.history= runif(nsim)
 statins= runif(nsim)
 physical.activity= runif(nsim)
+# screen.neg= runif(nsim)
+
 beacon_imp$cc= as.numeric(as.character(beacon_imp$cc))
 beacon_imp$site= as.numeric(as.character(beacon_imp$site))
 beacon_imp$sex= as.numeric(as.character(beacon_imp$sex))
 
+# beacon_imp= cbind(beacon_imp, family.history, statins, physical.activity, screen.neg, race)
 beacon_imp= cbind(beacon_imp, family.history, statins, physical.activity, race)
 beacon_imp$statins= ifelse(beacon_imp$cc==0,
                            cut(statins, c(0,.75,1), labels= c(1,0)),
@@ -59,15 +62,16 @@ beacon_imp$family.history= ifelse(beacon_imp$cc==0,
                                   cut(family.history, c(0, 0.93, 1), labels= c(0,1)),
                                   cut(family.history, c(0, 0.82, 1), labels= c(0,1)))
 beacon_imp$physical.activity= ifelse(beacon_imp$cc==0,
-                                  cut(physical.activity, breaks= 4, labels = c(3,2,1,0)),
-                                  cut(physical.activity, c(0, .22, .46, 0.72, 1), labels= c(3,2,1,0)))
+                                     cut(physical.activity, breaks= 4, labels = c(3,2,1,0)),
+                                     cut(physical.activity, c(0, .22, .46, 0.72, 1), labels= c(3,2,1,0)))
+# beacon_imp$screen.neg= ifelse(beacon_imp$cc==0,
+#                                      cut(screen.neg, c(0, .97, 1), labels = c(1, 0)),
+#                                      cut(screen.neg, c(0, .99, 1), labels= c(1, 0)))
 beacon_imp$race= ifelse(beacon_imp$cc==0,
                                   cut(race, c(0, 0.85, 1), labels= c(1,2)),
                                   cut(race, c(0, 0.966, 1), labels= c(1,2)))
 beacon_imp$sex = ifelse(beacon_imp$race== 2, 1, beacon_imp$sex)
-beacon_imp$screen.neg= 0
-beacon_imp$screen.neg= as.numeric(as.character(as.factor(beacon_imp$screen.neg)))
-
+# View(beacon_imp)
 source("batchme3.R")
 p_4
 

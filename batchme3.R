@@ -12,8 +12,8 @@ for(i in 1:nrow(beacon_imp)) {
   parm_list1[indx] <- lapply(parm_list1[indx], function(x) as.numeric(as.character(x)))
   
   sim_status= 0
-  agenow= parm_list1$age
-  age= agenow- 62
+  age.cent= parm_list1$age - 62
+  # age= agenow- 62
   sex= parm_list1$sex
   race= parm_list1$race
   
@@ -21,7 +21,8 @@ for(i in 1:nrow(beacon_imp)) {
                 ifelse(sex==2 & race==1, "WF",
                   ifelse(sex==1 & race==2, "BM", "NA")))
   
-  parm_list2= gather(parm_list1, Risk_Factor, parm_val, site:segment.length)
+  parm_list2= gather(parm_list1, Risk_Factor, parm_val, site:physical.activity)
+  # parm_list2= gather(parm_list1, Risk_Factor, parm_val, site:segment.length)
   
   beta_list2= get_betas(sim_status)
   
@@ -38,7 +39,7 @@ for(i in 1:nrow(beacon_imp)) {
   }
   dataToUse = merge(PAR_pert, beta_list3, "Risk_Factor")
   
-  mario_IR10= project_risk2(dataToUse$beta,PAR_prod, agenow-62, demog, sim_status, project_yrs)
+  mario_IR10= project_risk2(dataToUse$beta,PAR_prod, age.cent, demog, sim_status, project_yrs)
   beacon_imp$risk10[i]= mario_IR10
 }
 
