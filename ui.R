@@ -5,6 +5,7 @@ library(shinyBS)
 library(shinythemes)
 library(ggthemes)
 library(rsconnect)
+
 # if (!require(rsconnect)) install.packages('rsconnect')
 # library(rsconnect)
 
@@ -26,6 +27,16 @@ tabPanel("About",
 #risk calculator tab ====
     tabPanel("Risk Calculator",
             fluidRow(
+              tags$head(
+      tags$style(
+        HTML(".shiny-notification {
+             position:fixed;
+             top: calc(40%);;
+             left: calc(50%);;
+             }
+             "
+            ))),
+
               column(2,
 
                 wellPanel(
@@ -34,6 +45,8 @@ tabPanel("About",
                          style = "primary",
                          size = "medium",
                          type = "action"),
+                # bsPopover("bg_help", "Background", includeText("required_files/bg_help.md")),
+                
                 br(),
                 radioButtons("sex_race", label= p("Sex/Race", style="color:green"),
                              choices = c("Male/White"= 0, "Male/Black"= 1, "Female/White"= 2), selected= 0),
@@ -46,6 +59,8 @@ tabPanel("About",
                          style = "primary",
                          size = "medium",
                          type = "action"),
+                # bsPopover("pf_help", "blbl", includeText("required_files/cf_help.md")),
+
                 br(),
                 
                 sliderInput("exercise", label= p("Physical activity", style="color:green"), min=1, max=4, value= 2),

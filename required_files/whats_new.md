@@ -1,3 +1,7 @@
+#### Version 0.7.3 (4 Jun 2018)
+* Improved help popups
+* Modified biopsy prevalence based on CISNET assumptions
+
 #### Version 0.7.2 (10 May 2018)
 * added screen-negative effect to calculator (SIM-negative stratum(
 * added reflux to SIM-positive stratum

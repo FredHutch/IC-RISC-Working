@@ -17,8 +17,6 @@ library(rsconnect)
 library(shiny)
 library(shinyBS)
 library(shinythemes)
-# library(assertthat)
-# library(car)
 
 get_betas= function(sim) {     # READS AND RETURNS rr/se BASED ON SIM STATUS ====
   # assert_that(sim==0 | sim==1)
