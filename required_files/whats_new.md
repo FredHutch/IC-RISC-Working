@@ -1,5 +1,5 @@
 #### Version 0.7.4 (8 Jun 2018)
-* Modified overall BE progression rates to weight LGD and HGD using relative risks of 3.68 and 20.0)
+* Modified overall BE progression rates to weight LGD and HGD using relative risks of 3.68 and 20.0.
 
 #### Version 0.7.3 (4 Jun 2018)
 * Improved help popups

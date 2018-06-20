@@ -2,8 +2,8 @@
 
 addvertlines= function(theplot) {
   theplot + 
-    geom_vline(xintercept = 0.6, linetype = "longdash", size= 0.5, colour= "blue")+
-    geom_vline(xintercept = 1.3, linetype = "longdash", size= 0.5, colour= "green")+
+    geom_vline(xintercept = 0.69, linetype = "longdash", size= 0.5, colour= "blue")+
+    geom_vline(xintercept = 1.19, linetype = "longdash", size= 0.5, colour= "green")+
     geom_vline(xintercept = 2., linetype = "longdash", size= 0.4, colour= "darkgray")+
     geom_vline(xintercept = 4., linetype = "longdash", size= 0.4, colour= "darkgray")+
     geom_vline(xintercept = 6., linetype = "longdash", size= 0.4, colour= "darkgray")+
@@ -83,7 +83,7 @@ p1= ggplot(beacon_imp_exp, aes(risk10a, ..density.., color= as.factor(cc2))) +
   p1= addvertlines(p1)
   # theme(panel.grid.major.x = element_line(colour="darkgray", size=0.1)) +
 
-res= coords(myroc, x= c(0.6, 1.3, seq(2, toprisk, by=2)), 
+res= coords(myroc, x= c(0.69, 1.19, seq(2, toprisk, by=2)), 
             ret= c("threshold", "spec", "sens"))
 mycols=rownames(res)      # save row names
 tres= data.frame(t(res))  # transpose rows and columns
@@ -163,9 +163,9 @@ draw_plot(pspec, 0, .80, 1, .20)
 p_4
 
 if(FALSE) {
-beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 0.6, 1, 0)
+beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 0.69, 1, 0)
 crosstab(beacon_imp_exp$cc2, beacon_imp_exp$pcc, prop.r= TRUE, plot= FALSE)
-beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 1.3, 1, 0)
+beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 1.19, 1, 0)
 crosstab(beacon_imp_exp$cc2, beacon_imp_exp$pcc, prop.r= TRUE, plot= FALSE)
 beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 4., 1, 0)
 crosstab(beacon_imp_exp$cc2, beacon_imp_exp$pcc, prop.r= TRUE, plot= FALSE)
