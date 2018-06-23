@@ -13,7 +13,6 @@ for(i in 1:nrow(beacon_imp)) {
   
   sim_status= 0
   age.cent= parm_list1$age - 62
-  # age= agenow- 62
   sex= parm_list1$sex
   race= parm_list1$race
   
@@ -22,7 +21,6 @@ for(i in 1:nrow(beacon_imp)) {
                   ifelse(sex==1 & race==2, "BM", "NA")))
   
   parm_list2= gather(parm_list1, Risk_Factor, parm_val, site:physical.activity)
-  # parm_list2= gather(parm_list1, Risk_Factor, parm_val, site:segment.length)
   
   beta_list2= get_betas(sim_status)
   

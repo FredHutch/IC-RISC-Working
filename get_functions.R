@@ -20,7 +20,7 @@ library(shinythemes)
 
 get_betas= function(sim) {     # READS AND RETURNS rr/se BASED ON SIM STATUS ====
   # assert_that(sim==0 | sim==1)
-  newbees= read_excel("./required_files/relative risks.xlsx")
+  newbees= read_excel("./indata/relative risks.xlsx")
   newbees= mutate(newbees, beta= abs(beta))     # convert betas to all positive
                                                 # (to be consistent with input)
   newbees= select(newbees, Risk_Factor, rflevel_cat, beta, betase, SIM_Status)

@@ -16,7 +16,7 @@ addvertlines= function(theplot) {
 }
 toprisk= 18
 
-beacon_imp$cc2= ifelse(beacon_imp$cc==0, 0, 1)  #controls vs BE/EA
+beacon_imp$cc2= ifelse(beacon_imp$cc==0, 0, 1)
 
 beacon_imp$risk10a= ifelse(beacon_imp$risk10>(toprisk-1), toprisk, beacon_imp$risk10)
 # crosstab(beacon_imp$race, beacon_imp$sex)
@@ -36,16 +36,18 @@ beacon_imp$age5= ifelse(beacon_imp$age<45, 1,
                                                          )))))))
 
 # Determine fraction of BEACON controls in each age & race group
-sum_bea= beacon_imp %>% group_by(age5, demog) %>%
-  filter(cc==0) %>% summarise(numbea= n())
+sum_bea= beacon_imp %>% 
+  group_by(age5, demog) %>%
+  filter(cc==0) %>% 
+  summarise(numbea= n())
 sum_bea$tot_cont= sum(sum_bea$numbea)
 sum_bea= mutate(sum_bea, BeaFrac= numbea/tot_cont)
 
 # Add information on study
-# site_info= read_excel("site_info.xlsx")
+# site_info= read_excel("./indata/site_info.xlsx")
 
 # Add variables from US Census====
-USpop2015= read_excel("USpop2015.xlsx")
+USpop2015= read_excel("./indata/USpop2015.xlsx")
 
 # Append above info to datafile
 beacon_imp= merge(beacon_imp, USpop2015)
@@ -68,7 +70,10 @@ beacon_imp_exp= filter(beacon_imp_exp, cc== 0| cc== 2)
 
 #this has already been filtered by case type  
 myroc= roc(beacon_imp_exp$cc2, beacon_imp_exp$risk10, auc=TRUE, ci=TRUE)
-# plot.roc(myroc)
+plot.roc(myroc)
+# myroc[["ci"]]
+# myroc[["auc"]]
+# Area under the curve: 0.7921
 
 p1= ggplot(beacon_imp_exp, aes(risk10a, ..density.., color= as.factor(cc2))) +
   geom_freqpoly(bins= toprisk+1, size=.8) +
@@ -104,6 +109,7 @@ tres= mutate(tres,
 )
 fpbase= tres$fp[1]
 tres= mutate(tres, endosav= 100*(fpbase-fp) / fpbase)
+# View(tres)
 
 pppv= ggplot(tres, aes(threshold, 100*ppv)) +
   geom_point() +
@@ -137,10 +143,10 @@ pspec= ggplot(tres, aes(threshold, specificity)) +
         axis.text.x=element_blank())
   pspec= addvertlines(pspec)
 
-p_3= ggdraw() +
-  draw_plot(p1, 0, 0, 1,.46) +
-  draw_plot(pppv, 0, .46, 1, .26) +
-  draw_plot(psens, 0, .72, 1, .26)
+# p_3= ggdraw() +
+#   draw_plot(p1, 0, 0, 1,.46) +
+#   draw_plot(pppv, 0, .46, 1, .26) +
+#   draw_plot(psens, 0, .72, 1, .26)
 # p_3
 
 pfp= ggplot(tres, aes(threshold, endosav)) +
@@ -162,15 +168,3 @@ draw_plot(pspec, 0, .80, 1, .20)
 # draw_plot(pfp, 0, .80, 1, .20)
 p_4
 
-if(FALSE) {
-beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 0.69, 1, 0)
-crosstab(beacon_imp_exp$cc2, beacon_imp_exp$pcc, prop.r= TRUE, plot= FALSE)
-beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 1.19, 1, 0)
-crosstab(beacon_imp_exp$cc2, beacon_imp_exp$pcc, prop.r= TRUE, plot= FALSE)
-beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 4., 1, 0)
-crosstab(beacon_imp_exp$cc2, beacon_imp_exp$pcc, prop.r= TRUE, plot= FALSE)
-beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 6., 1, 0)
-crosstab(beacon_imp_exp$cc2, beacon_imp_exp$pcc, prop.r= TRUE, plot= FALSE)
-beacon_imp_exp$pcc= ifelse(beacon_imp_exp$risk10a> 8., 1, 0)
-crosstab(beacon_imp_exp$cc2, beacon_imp_exp$pcc, prop.r= TRUE, plot= FALSE)
-}

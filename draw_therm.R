@@ -52,7 +52,7 @@ p1=
 
 # Add comparison diseases ====
 
-disease_comp= read_excel("required_files/mortality_comparisons.xlsx")
+disease_comp= read_excel("./indata/mortality_comparisons.xlsx")
 disease_comp= gather(disease_comp, demogroup, incidence10, WM:BM)
 
 # PLACE TEXT SLIGHTLY RIGHT OF MID-THERMOMETER
