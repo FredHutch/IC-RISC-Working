@@ -10,19 +10,19 @@ shinyServer(function(input, output) {
 
 ###############################  RESPOND TO REQUESTS FOR HELP ====
   observeEvent(input$rf_help, {
-    showNotification(includeMarkdown("required_files/rf_help.md"),  type= "default", duration= NULL)
+    showNotification(includeMarkdown("required_files/rf_help.md"),  type= "default", duration= 8)
   })
 
   observeEvent(input$pf_help, {
-    showNotification(includeMarkdown("required_files/pf_help.md"),  type= "default", duration= NULL)
+    showNotification(includeMarkdown("required_files/pf_help.md"),  type= "default", duration= 8)
   })
 
   observeEvent(input$bg_help, {
-    showNotification(includeMarkdown("required_files/bg_help.md"),  type= "default", duration= NULL)
+    showNotification(includeMarkdown("required_files/bg_help.md"),  type= "default", duration= 8)
   })
 
   observeEvent(input$cf_help, {
-    showNotification(includeMarkdown("required_files/cf_help.md"),  type= "default", duration= NULL)
+    showNotification(includeMarkdown("required_files/cf_help.md"),  type= "default", duration= 8)
   })
 
 ###############################  OUTPUT MYRISK ====

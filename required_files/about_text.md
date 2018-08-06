@@ -1,16 +1,12 @@
 
-### Important
+### Intended audience
 
-This tool was designed for use by health providers __*with*__ their patients. Please take these results to your doctor or other health provider to discuss your personal risk of esophageal adenocarcinoma. 
+This tool was designed for use by health providers __*with*__ their patients. Please take these results to your doctor or other health provider to discuss your personal risk of esophageal adenocarcinoma. __*IC\-RISC\(TM)*__ ("Interactive & Contextual RISk Calculator") currently applies only to __*white males, black males and white females*__, which are the groups with the most accurate information on incidence and risk factors. The incidence of EA is very low in black females, and little risk factor information is available specifically for hispanics or persons of other ethnic/racial backgrounds. 
 
 ### Background
 
 Esophageal adenocarcinoma (EA) is an aggressive cancer usually arising in the lower part of the esophagus near the stomach. Once quite rare, its incidence has risen substantially over the past four decades in the U.S. and many other developed countries. It is most common among white males, although incidence rates in other groups also have risen. Unless diagnosed at an early stage, long term survival with EA remains poor. Therefore __*preventing*__ the cancer and __*detecting it at an early stage*__ remain the most effective options.
 
-### Intended audience
-
-__*IC\-RISC\(TM)*__ ("Interactive & Contextual RISk Calculator") currently applies only to __*white males, black males and white females*__, which are the groups with the most accurate information on incidence and risk factors. The incidence of EA is very low in black females, and little risk factor information is available specifically for hispanics or persons of other ethnic/racial backgrounds. 
-   
 ### Purpose
 
 Epidemiologic and clinical research has revealed many risk factors which, taken together, can help estimate a person's probability of developing this cancer. These include demographic factors, host and lifestyle factors, medications, family history, and genetic markers. IC-RISC(TM) uses an individual's risk factor profile to __*estimate his/her absolute risk of developing EA over the next ten years*__. 

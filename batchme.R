@@ -52,12 +52,18 @@ beacon_imp$sex= as.numeric(as.character(beacon_imp$sex))
 
 # beacon_imp= cbind(beacon_imp, family.history, statins, physical.activity, screen.neg, race)
 beacon_imp= cbind(beacon_imp, family.history, statins, physical.activity, race)
+# beacon_imp$statins= ifelse(beacon_imp$cc==0,
+#                            cut(statins, c(0,.75,1), labels= c(1,0)),  #OR=0.52; prev(contr)=.35
+#                            cut(statins, c(0,.852,1), labels= c(1,0)))
+# beacon_imp$family.history= ifelse(beacon_imp$cc==0,
+#                                   cut(family.history, c(0, 0.93, 1), labels= c(0,1)),
+#                                   cut(family.history, c(0, 0.82, 1), labels= c(0,1))) #OR=2.76; prev(case)=7.3%
 beacon_imp$statins= ifelse(beacon_imp$cc==0,
-                           cut(statins, c(0,.75,1), labels= c(1,0)),
-                           cut(statins, c(0,.81,1), labels= c(1,0)))
+                           cut(statins, c(0,.65,1), labels= c(1,0)),  #OR=0.52; prev(contr)=.35
+                           cut(statins, c(0,.781,1), labels= c(1,0)))
 beacon_imp$family.history= ifelse(beacon_imp$cc==0,
-                                  cut(family.history, c(0, 0.93, 1), labels= c(0,1)),
-                                  cut(family.history, c(0, 0.82, 1), labels= c(0,1)))
+                                  cut(family.history, c(0, 0.97, 1), labels= c(0,1)),
+                                  cut(family.history, c(0, 0.92, 1), labels= c(0,1))) #OR=2.76; prev(case)=7.3%
 beacon_imp$physical.activity= ifelse(beacon_imp$cc==0,
                                      cut(physical.activity, breaks= 4, labels = c(3,2,1,0)),
                                      cut(physical.activity, c(0, .22, .46, 0.72, 1), labels= c(3,2,1,0)))

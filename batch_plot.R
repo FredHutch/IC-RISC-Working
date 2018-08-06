@@ -71,8 +71,8 @@ beacon_imp_exp= filter(beacon_imp_exp, cc== 0| cc== 2)
 #this has already been filtered by case type  
 myroc= roc(beacon_imp_exp$cc2, beacon_imp_exp$risk10, auc=TRUE, ci=TRUE)
 plot.roc(myroc)
-# myroc[["ci"]]
-# myroc[["auc"]]
+myroc[["ci"]]
+myroc[["auc"]]
 # Area under the curve: 0.7921
 
 p1= ggplot(beacon_imp_exp, aes(risk10a, ..density.., color= as.factor(cc2))) +
@@ -94,7 +94,8 @@ mycols=rownames(res)      # save row names
 tres= data.frame(t(res))  # transpose rows and columns
 colnames(tres)= mycols    # re-assign old rownames to column (variables)
 
-caserate= 160/100000
+caserate= 160/100000   # took number of cases (WM, WF, BM) from SEER9 (40-79 years) and multiplied by 10
+# caserate= 160/100000
 pop= 100000
 numcases= caserate*pop
 numnoncases= pop- numcases

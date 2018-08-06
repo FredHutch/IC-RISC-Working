@@ -1,3 +1,8 @@
+#### Version 0.8.0 (2 Aug 2018)
+* Changed SEER comparison to 2018 release of SEER18
+* Added possibility of two or more family members with BE/EA
+* Updated population prevalence for several risk factors
+
 #### Version 0.7.4 (8 Jun 2018)
 * Modified overall BE progression rates to weight LGD and HGD using relative risks of 3.68 and 20.0.
 

@@ -31,7 +31,9 @@ tabPanel("About",
       tags$style(
         HTML(".shiny-notification {
              position:fixed;
-             top: calc(40%);;
+             opacity: 0.94;
+background: #d3d3d3;
+             top: calc(7.8%);;
              left: calc(50%);;
              }
              "
@@ -92,7 +94,7 @@ tabPanel("About",
                   conditionalPanel(condition= "input.simstatus != 1",
                     
                   radioButtons("famhx", label= p("Family history", style="color:green"),
-                               choices = list("No"= 0, "Yes"= 1), selected= 0)
+                               choices = list("No"= 0, "1"= 1, "2+"= 2), selected= 0)
                   ),
                   
                   radioButtons("refluxfreq", label = p("Reflux symptoms", br(), "(off meds)", style="color:green"),
