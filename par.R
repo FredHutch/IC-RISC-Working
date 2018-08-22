@@ -6,7 +6,7 @@ epsilon= 0.001
 
 for(simsim in 0:1) {
 
-  RiskFactorData = read_excel("./indata/relative risks.xlsx")
+  RiskFactorData = read_excel("./input_data/relative risks.xlsx")
   # SELECT ON SIM STATUS
   RiskFactorData= filter(RiskFactorData, use_me== 1 & SIM_Status== simsim)
   RF = select(RiskFactorData[!is.na(RiskFactorData$prev),], Risk_Factor, beta, betase, prev)

@@ -21,7 +21,7 @@ tabPanel("About",
 
         fluidRow(
         column(1),
-        column(10, includeMarkdown("required_files/about_text.md"))
+        column(10, includeMarkdown("markdown_files/about_text.md"))
          )),
 
 #risk calculator tab ====
@@ -32,7 +32,7 @@ tabPanel("About",
         HTML(".shiny-notification {
              position:fixed;
              opacity: 0.94;
-background: #d3d3d3;
+             background: #d3d3d3;
              top: calc(7.8%);;
              left: calc(50%);;
              }
@@ -47,7 +47,7 @@ background: #d3d3d3;
                          style = "primary",
                          size = "medium",
                          type = "action"),
-                # bsPopover("bg_help", "Background", includeText("required_files/bg_help.md")),
+                # bsPopover("bg_help", "Background", includeText("markdown_files/bg_help.md")),
                 
                 br(),
                 radioButtons("sex_race", label= p("Sex/Race", style="color:green"),
@@ -61,7 +61,7 @@ background: #d3d3d3;
                          style = "primary",
                          size = "medium",
                          type = "action"),
-                # bsPopover("pf_help", "blbl", includeText("required_files/cf_help.md")),
+                # bsPopover("pf_help", "blbl", includeText("markdown_files/cf_help.md")),
 
                 br(),
                 
@@ -136,7 +136,7 @@ background: #d3d3d3;
             #
             # fluidRow(
             #   column(6),
-            #   column(6, includeMarkdown("required_files/myfootnote.md"))
+            #   column(6, includeMarkdown("markdown_files/myfootnote.md"))
             #),
 
 #BMI tab ====
@@ -238,7 +238,7 @@ navbarMenu("Risk factors",
 
          fluidRow(
             column(1),
-            column(10, includeMarkdown("required_files/whats_new.md")))
+            column(10, includeMarkdown("markdown_files/whats_new.md")))
           ),
 
     tabPanel("EA incidence and overall mortality",
@@ -252,17 +252,28 @@ navbarMenu("Risk factors",
            column(10, plotOutput("myincidence")))
     ),
 
-    tabPanel("Acknowledgements/Contact",
-         fluidRow(
-           column(1),
-           column(10, wellPanel(h3("Acknowledgements"), align="center"))
-         ),
-
-         fluidRow(
-           column(1),
-           column(10, includeMarkdown("required_files/acknow.md")))
+    tabPanel("License/Contact",
+             fluidRow(
+               column(1),
+               column(10, wellPanel(h3("License"), align="center"))
+             ),
+             
+             fluidRow(
+               column(1),
+               column(10, includeMarkdown("markdown_files/license.md")))
     ),
-
+    
+    tabPanel("Acknowledgements",
+             fluidRow(
+               column(1),
+               column(10, wellPanel(h3("Acknowledgements"), align="center"))
+             ),
+             
+             fluidRow(
+               column(1),
+               column(10, includeMarkdown("markdown_files/acknow.md")))
+    ),
+    
     tabPanel("Further Information",
         fluidRow(
           column(1),
@@ -276,7 +287,7 @@ navbarMenu("Risk factors",
 
         fluidRow(
           column(1),
-          column(10, includeMarkdown("required_files/further_info.md"))
+          column(10, includeMarkdown("markdown_files/further_info.md"))
           )
     ))
 ))

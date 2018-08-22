@@ -2,7 +2,7 @@
 
 source("get_functions.R")
 
-agerate= read_excel("./indata/stratified_EA_rates.xlsx")
+agerate= read_excel("./input_data/stratified_EA_rates.xlsx")
 agerate$age.c= agerate$age-62
 agerate= mutate(agerate, ACM_XEA_wm= ACM_wm - mortality_wm_EA,
                 ACM_XEA_wf= ACM_wf - mortality_wf_EA,

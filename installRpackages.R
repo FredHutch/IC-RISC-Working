@@ -15,6 +15,8 @@ install.packages("viridis")
 install.packages("ggthemes")
 install.packages("ggExtra")
 install.packages("scales")
+install.packages("reshape")
+                 
 install.packages("xtable")
 install.packages("markdown")
 install.packages("htmltools")

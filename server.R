@@ -10,19 +10,19 @@ shinyServer(function(input, output) {
 
 ###############################  RESPOND TO REQUESTS FOR HELP ====
   observeEvent(input$rf_help, {
-    showNotification(includeMarkdown("required_files/rf_help.md"),  type= "default", duration= 8)
+    showNotification(includeMarkdown("markdown_files/rf_help.md"),  type= "default", duration= 8)
   })
 
   observeEvent(input$pf_help, {
-    showNotification(includeMarkdown("required_files/pf_help.md"),  type= "default", duration= 8)
+    showNotification(includeMarkdown("markdown_files/pf_help.md"),  type= "default", duration= 8)
   })
 
   observeEvent(input$bg_help, {
-    showNotification(includeMarkdown("required_files/bg_help.md"),  type= "default", duration= 8)
+    showNotification(includeMarkdown("markdown_files/bg_help.md"),  type= "default", duration= 8)
   })
 
   observeEvent(input$cf_help, {
-    showNotification(includeMarkdown("required_files/cf_help.md"),  type= "default", duration= 8)
+    showNotification(includeMarkdown("markdown_files/cf_help.md"),  type= "default", duration= 8)
   })
 
 ###############################  OUTPUT MYRISK ====
@@ -226,14 +226,14 @@ shinyServer(function(input, output) {
 
 ###############################  OUTPUTS RR SIM_NEG TABLE ====
   output$mytable_neg= renderTable({
-    rr_neg= as.data.frame(read_excel("./indata/relative risks.xlsx"))
+    rr_neg= as.data.frame(read_excel("./input_data/relative risks.xlsx"))
     rr_neg= filter(rr_neg, SIM_Status==0 & use_me==1)
     rr_neg= select(rr_neg, Risk_Factor_level, rr, lowCI, highCI, Notes)
   })
 
 ###############################  OUTPUTS RR SIM_POS TABLE ====
   output$mytable_pos= renderTable({
-    rr_pos= as.data.frame(read_excel("./indata/relative risks.xlsx"))
+    rr_pos= as.data.frame(read_excel("./input_data/relative risks.xlsx"))
     rr_pos= filter(rr_pos, SIM_Status==1 & use_me==1)
     rr_pos= select(rr_pos, Risk_Factor_level, rr, lowCI, highCI, Notes)
   })
@@ -273,7 +273,7 @@ output$rainforest = renderPlot({
 
 get_rf_plot= function(sim) {
   maxCI= 30
-  rforest0= as.data.frame(read_excel("./indata/relative risks.xlsx"))
+  rforest0= as.data.frame(read_excel("./input_data/relative risks.xlsx"))
   rforest0= mutate(rforest0, rflevel2= ifelse(rforest0$rflevel_cat==0, # indents levels for output
                                             as.character(rforest0$Risk_Factor_level),
                                             paste("     ",rforest0$Risk_Factor_level)))
