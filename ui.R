@@ -65,7 +65,10 @@ tabPanel("About",
 
                 br(),
                 
-                sliderInput("exercise", label= p("Physical activity", style="color:green"), min=1, max=4, value= 2),
+                conditionalPanel(condition= "input.simstatus != 1",
+                sliderInput("exercise", label= p("Physical activity", style="color:green"), min=1, max=4, value= 2)
+                ),
+                
                 
                 radioButtons("nsaid", label= p("Aspirin/NSAID use", style="color:green"),
                              choices = c("No"= 0, "Yes"= 1), selected= 0),
@@ -116,7 +119,7 @@ tabPanel("About",
                          type = "action"),
                 br(),
 
-                radioButtons("simstatus", label= p("SIM status", style="color:green"),
+                radioButtons("simstatus", label= p("Barrett's status", style="color:green"),
                              choices = list("Unknown"= 9, "Negative"= 0, "Positive"= 1), selected = 9),
 
                 conditionalPanel(
@@ -202,26 +205,26 @@ navbarMenu("Risk factors",
 
            tabPanel("Risk factor summary",
                     fluidRow(column(1),
-                             column(10, wellPanel(h3("Risk factors by SIM status", align= "center")))),
+                             column(10, wellPanel(h3("Risk factors by Barrett's status", align= "center")))),
                     fluidRow(column(1),
                              column(10, plotOutput("rainforest")))
            ),
 
-           tabPanel("Input table - SIM negative",
+           tabPanel("Input table - Barrett's negative",
 
                     fluidRow(
                       column(1),
-                      column(10, wellPanel(h3("Parameter Values - SIM negative", align= "center")))),
+                      column(10, wellPanel(h3("Parameter Values - BE negative", align= "center")))),
                     fluidRow(
                       column(1),
                       column(10, tableOutput("mytable_neg")))
            ),
 
-           tabPanel("Input table - SIM positive",
+           tabPanel("Input table - Barrett's positive",
 
                     fluidRow(
                       column(1),
-                      column(10, wellPanel(h3("Parameter Values - SIM positive", align= "center")))),
+                      column(10, wellPanel(h3("Parameter Values - BE positive", align= "center")))),
                     fluidRow(
                       column(1),
                       column(10, tableOutput("mytable_pos")))

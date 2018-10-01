@@ -273,6 +273,7 @@ output$rainforest = renderPlot({
 
 get_rf_plot= function(sim) {
   maxCI= 30
+  minCI= 0.18
   rforest0= as.data.frame(read_excel("./input_data/relative risks.xlsx"))
   rforest0= mutate(rforest0, rflevel2= ifelse(rforest0$rflevel_cat==0, # indents levels for output
                                             as.character(rforest0$Risk_Factor_level),
@@ -282,13 +283,14 @@ get_rf_plot= function(sim) {
   rf_plot = ggplot(rforest0,aes(rr, y= factor(rforest0$rflevel2, levels= rev(rforest0$rflevel2)))) +
     geom_point(size=3, shape=18, colour= ifelse(rforest0$SIM_Status, "blue", "firebrick")) +
     # geom_errorbarh(aes(xmax = highCI, xmin = lowCI), height = 0.0) +
-    geom_errorbarh(aes(xmax = ifelse(highCI>maxCI, maxCI, highCI), xmin = lowCI), height = 0.0) +
+    # geom_errorbarh(aes(xmax = ifelse(highCI>maxCI, maxCI, highCI), xmin = lowCI), height = 0.0) +
+    geom_errorbarh(aes(xmax = ifelse(highCI>maxCI, maxCI, highCI), xmin = ifelse(lowCI<minCI, minCI, lowCI)), height = 0.0) +
     geom_vline(xintercept = 1, linetype = "longdash", size= 0.8, colour= "blue") +
     scale_x_continuous(trans= "log",
                        breaks= c(.3, .5, 0.7, 1, 1.5, 2.0, 3.0, 5.0, 10, 20, maxCI),
                        limits= c(0.05, maxCI)) +
     labs(title= paste("Relative Risks (95% CI):  ",
-                      ifelse(sim==1, "SIM positive", "SIM negative")),
+                      ifelse(sim==1, "BE positive", "BE negative")),
          x="", y="") +
     geom_text(aes(x=0.0,label=rflevel2),size=4, hjust=0) +
     theme_minimal() +

@@ -1,3 +1,6 @@
+#### Version 0.9.0 (30 Sep 2018)
+* Updated relative risk for NSAIDs, statins and reflux
+
 #### Version 0.8.1 (22 Aug 2018)
 * Added licensing information
 * Minor organizational changes
