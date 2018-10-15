@@ -65,16 +65,16 @@ tabPanel("About",
 
                 br(),
                 
-                conditionalPanel(condition= "input.simstatus != 1",
-                sliderInput("exercise", label= p("Physical activity", style="color:green"), min=1, max=4, value= 2)
-                ),
-                
                 
                 radioButtons("nsaid", label= p("Aspirin/NSAID use", style="color:green"),
                              choices = c("No"= 0, "Yes"= 1), selected= 0),
                 
                 radioButtons("statin", label= p("Statin use", style="color:green"),
                              choices = c("No"= 0, "Yes"= 1), selected= 0),
+                
+                conditionalPanel(condition= "input.simstatus != 1",
+                                 sliderInput("exercise", label= p("Physical activity", style="color:green"), min=1, max=4, value= 2)
+                ),
                 br()
                 
               )),
@@ -94,17 +94,17 @@ tabPanel("About",
 
                 
                   br(),
-                  conditionalPanel(condition= "input.simstatus != 1",
-                    
-                  radioButtons("famhx", label= p("Family history", style="color:green"),
-                               choices = list("No"= 0, "1"= 1, "2+"= 2), selected= 0)
-                  ),
                   
                   radioButtons("refluxfreq", label = p("Reflux symptoms", br(), "(off meds)", style="color:green"),
                               choices= list("Rarely"= 0, "< Weekly"= 1, "Weekly - Daily"= 2, "> Daily" = 3), selected= 1),
                   sliderInput("bmic", label = p("Body Mass Index", style="color:green"), min = 20, max = 45, value = 28),
                   radioButtons("cig2", label = p("Cigarette use", style="color:green"),
-                              choices = c("Never"= 0, "Ever"= 1), selected= 0)
+                              choices = c("Never"= 0, "Ever"= 1), selected= 0),
+                  
+                  conditionalPanel(condition= "input.simstatus != 1",
+                                   
+                                   radioButtons("famhx", label= p("Family history", style="color:green"),
+                                                choices = list("No"= 0, "1"= 1, "2+"= 2), selected= 0))
               )),
 
               column(2,
@@ -247,7 +247,7 @@ navbarMenu("Risk factors",
     tabPanel("EA incidence and overall mortality",
          fluidRow(
            column(1),
-           column(10, wellPanel(h3("EA incidence and overall mortality by age", align= "center")))
+           column(10, wellPanel(h3("EAC incidence and overall mortality by age", align= "center")))
            ),
 
          fluidRow(

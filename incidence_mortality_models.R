@@ -41,7 +41,7 @@ p_incid_NEG_BOTH= ggplot(agerate, aes(x=age)) +
   geom_point(aes(y= rate_sim_neg_bm), shape= 16, size=2, color="purple") +
   stat_smooth(aes(y= fitted(ar_incid_NEG_BM)), method = 'lm', formula =  y ~ poly(x,3), color="purple") +
 
-  labs(title = "EA incidence - SIM neg") +
+  labs(title = "EAC incidence - BE negative") +
   theme(plot.title = element_text(size=14, margin = margin(4, 0, 10, 0)),
         panel.grid.major.y = element_line(colour = "gray", size=0.50),
         panel.grid.minor.y = element_line(colour= "gray", size= 0.50)) +
@@ -61,7 +61,7 @@ p_incid_POS_BOTH= ggplot(agerate, aes(x=age)) +
 
   geom_point(aes(y= rate_sim_pos_bm), shape= 16, size=2, color="purple") +
   stat_smooth(aes(y= fitted(ar_incid_POS_BM)), method = 'lm', formula =  y ~ poly(x,3), color="purple") +
-  labs(title = "EA incidence - SIM pos") +
+  labs(title = "EAC incidence - BE positive") +
   theme(plot.title = element_text(size=14, margin = margin(4, 0, 10, 0)),
         panel.grid.major.y = element_line(colour = "gray", size=0.50),
         panel.grid.minor.y = element_line(colour= "gray", size= 0.50)) +
@@ -81,7 +81,7 @@ p_mortal_BOTH= ggplot(agerate, aes(x=age)) +
   geom_point(aes(y= ACM_bm), shape= 16, size=2, color="purple") +
   stat_smooth(aes(y= fitted(ar_mort_BM)), method = 'lm', formula =  y ~ poly(x,3), color="purple") +
 
-  labs(title = "All Cause Mortality\n(except EA)") +
+  labs(title = "All Cause Mortality\n(except EAC)") +
   theme(plot.title = element_text(size=14, margin = margin(4, 0, 10, 0)),
         panel.grid.major.y = element_line(colour = "gray", size=0.50)) +
   xlab("Age") +

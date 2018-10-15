@@ -122,7 +122,7 @@ shinyServer(function(input, output) {
       mario_RR= exp(mario_ebeta)
 
       mario_IR5= project_risk2(dataToUse$beta, PAR_prod, agenow-62, demog, sim_status, project_yrs)
-
+# View(mario_IR5)
 # Variance estimate (compute_var) (epsilon set in "par.R")
 
       var_est=compute_var(epsilon, dataToUse$beta, PAR_pert, agenow-62, demog, sim_status, project_yrs, dataToUse$betase)
