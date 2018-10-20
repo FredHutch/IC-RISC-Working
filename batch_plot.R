@@ -75,8 +75,6 @@ myroc= roc(beacon_imp_exp$cc2, beacon_imp_exp$risk10, auc=TRUE, ci=TRUE)
 plot.roc(myroc)
 myroc[["ci"]]
 myroc[["auc"]]
-# Area under the curve: 0.8136
-# 95% CI: 0.7961-0.831 (DeLong)
 
 p1= ggplot(beacon_imp_exp) +
   geom_freqpoly(aes(risk10a, y= ..density.., linetype= as.factor(cc2)), bins= toprisk+1, size=.8) +
