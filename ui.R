@@ -31,7 +31,7 @@ tabPanel("About",
       tags$style(
         HTML(".shiny-notification {
              position:fixed;
-             opacity: 0.94;
+             opacity: 0.95;
              background: #d3d3d3;
              top: calc(7.8%);;
              left: calc(50%);;

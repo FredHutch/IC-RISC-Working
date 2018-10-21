@@ -1,4 +1,4 @@
-#### Version 1.0 (20 Oct 2018)
+#### Version 1.0a (20 Oct 2018)
 * Release version for Amer J Gastroenterology
 
 #### Version 0.9.0.1 (30 Sep 2018)
