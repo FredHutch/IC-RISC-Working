@@ -1,11 +1,39 @@
 #server.R
+#LICENSE====
+# ### License
+# 
+# #### Academic and non-profit use
+# 
+# IC-RISC software is made available for *academic and other non-profit use* under the 2-Clause BSD License:
+#   
+#   Copyright 2018 Thomas L Vaughan
+# 
+# Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+#   
+#   1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# 
+# #### Commercial use
+# 
+# IC-RISC software will be made available for commercial use under a negotiated license.
+# 
+# #### Contact
+# 
+# For academic and other non-profit use, download software at: https://github.com/FredHutch/IC-RISC-Working
+# 
+# For commercial use, contact Fred Hutchinson Cancer Center, Business Development & Strategy (206.667.4304)
 
+#Read remainer of source files====
 source("get_functions.R") # includes libraries
 source("par.R")
 source("incidence_mortality_models.R")
 source("draw_therm.R")
 source("draw_happyplot.R")
 
+# Begin shinyServer====
 shinyServer(function(input, output) {
 
 ###############################  RESPOND TO REQUESTS FOR HELP ====
@@ -213,8 +241,8 @@ shinyServer(function(input, output) {
         # draw_label(risklabel3, x = 0.76, y = .24, size = 20, colour= mycolor)
 
       dualplot= ggdraw() +
-      draw_plot(p1, 0, .02, 0.46, 1) +
-      draw_plot(pphappy, 0.48, 0.02, .52, 1.0) +
+      draw_plot(p1, 0, .02, 0.46, 0.98) +
+      draw_plot(pphappy, 0.48, 0.048, .52, 0.952) +
       draw_plot_label(paste0(foot1, foot2),
                       .08, .1, size= 12, hjust= 0, colour= "darkgreen")
 

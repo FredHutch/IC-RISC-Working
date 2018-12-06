@@ -1,5 +1,11 @@
-#### Version 1.0a (20 Oct 2018)
-* Release version for Amer J Gastroenterology
+#### Version 1.01 (5 Dec 2018)
+* Release version for website (https://ic-risc.esocan.org)
+* Updated license
+
+#### Version 1.0 (20 Oct 2018)
+* EAC incidence in BE positive white men reduced from 0.42 to 0.31% per year
+* EAC incidence in BE positive white women reduced from 0.5 to 0.4 rate in white men
+* EAC incidence in BE positive black men reduced from 1.0 to 0.75 rate in white men
 
 #### Version 0.9.0.1 (30 Sep 2018)
 * Updated relative risk for NSAIDs, statins and reflux

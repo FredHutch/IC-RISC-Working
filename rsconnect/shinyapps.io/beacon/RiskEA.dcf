@@ -5,8 +5,8 @@ account: beacon
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 98630
-bundleId: 1653350
+bundleId: 1744340
 url: https://beacon.shinyapps.io/RiskEA/
-when: 1540062968.9587
+when: 1544056458.71667
 asMultiple: FALSE
 asStatic: FALSE

@@ -25,11 +25,12 @@ if(numcases>0) {
 p= ggplot(happyfield, aes(xcol, ycol))  +
   geom_point(data= happyfield, mapping= aes(x= xcol, y= ycol, 
                                             color= factor(case)),
-             size=2.8, shape= happyfield$case_shape)  +
+             size= 3.0, shape= happyfield$case_shape)  +
   scale_shape_discrete() +
   scale_colour_manual(values = mycolors) +
   theme(legend.position=("none")) +
-  labs(list(y= "", x= "")) +
+  labs(y= NULL, x= NULL) +
+  # labs(x= NULL) +
   scale_x_continuous(breaks=NULL) + 
   scale_y_continuous(breaks=NULL)
 

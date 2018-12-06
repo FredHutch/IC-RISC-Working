@@ -41,7 +41,8 @@ p1=
   coord_fixed(ratio= graphratio) +
   scale_color_viridis(option = "B", discrete= FALSE, 
                       begin= me_begin, end= me_end, name=NULL) +
-  labs(list(y= "EA incidence rate", x= "")) +
+  labs(x= "") +
+  labs(y= "EA incidence rate") +
   
   scale_x_continuous(trans= "identity", breaks= NULL) + 
   scale_y_continuous(trans= "log10", 
