@@ -89,7 +89,7 @@ MXEA= function(x, demo) {   # estimates age-specific mortality rate from model =
 return(as.numeric(mxea_age))
 }
 
-project_risk2 <- function(beta, AR, age.c, demog, sim_status, delta){  ## project risk ====
+project_risk2 <- function(beta, AR, age.c, demog, sim_status, delta){  ## project risk for delta years====
   RR= exp(sum(beta))
   up_to_now= 0
   for(i in 0:delta-1) {

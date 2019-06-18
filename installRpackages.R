@@ -1,3 +1,5 @@
+# THIS LIST IS PROBABLY INCOMPLETE
+
 install.packages("shiny")
 install.packages("shinyBS")
 install.packages("shinythemes")
@@ -16,8 +18,11 @@ install.packages("ggthemes")
 install.packages("ggExtra")
 install.packages("scales")
 install.packages("reshape")
-                 
+
 install.packages("xtable")
 install.packages("markdown")
 install.packages("htmltools")
 install.packages("rsconnect")
+install.packages("promises")
+install.packages("mime")
+install.packages("colorspace")
