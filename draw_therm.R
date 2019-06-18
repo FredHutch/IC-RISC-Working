@@ -1,8 +1,13 @@
 #draw_therm.R
 
+# Function to draw background thermometer
+# this function is called by server.R each time the input changes (reactively)
+# server.R then adds Mario's risk pointer, confidence band and text in creating
+# final plot
+
 # NOTE THAT THE NUMBER "5" IN VARIABLES SUCH AS IR5 
 # STANDS IN FOR ACTUAL PROJECTED RISK YEARS 
-# project_yrs CURRENTLY= 10 AS DEFINED IN SERVER.R
+# project_yrs CURRENTLY= 10 AS DEFINED IN SERVER.R (variable project_yrs)
 
 draw_therm= function(sim, agenow, minenv, maxenv, demog) {
 

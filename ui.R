@@ -7,7 +7,7 @@
 # 
 # IC-RISC software is made available for *academic and other non-profit use* under the 2-Clause BSD License:
 #   
-#   Copyright 2018 Thomas L Vaughan
+#   Copyright 2019 Thomas L Vaughan
 # 
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #   
@@ -37,7 +37,7 @@ shinyUI(navbarPage("IC-RISC", theme = shinytheme("spacelab"),inverse= TRUE,
 
 # about tab ====
 tabPanel("About",
-        #shinythemes::themeSelector(),
+        #shinythemes::themeSelector(),  ##allows interactive choice of themes when active
 
         fluidRow(
         column(1),
