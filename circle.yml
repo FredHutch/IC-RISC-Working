@@ -13,8 +13,8 @@ dependencies:
 
 test:
   override:
-    - docker run -d --name ic-risc -p 7777:3838 dockerimages.fhcrc.org/ic-risc:latest
-    - sleep 15 && curl --retry 10 --retry-delay 5 -v http://${BUILD_HOST}:7777
+    - docker run -d --name ic-risc -p 3838:3838 dockerimages.fhcrc.org/ic-risc:latest
+    - sleep 15 && curl --retry 10 --retry-delay 5 -v http://${BUILD_HOST}:3838
     - docker stop ic-risc && docker rm --force ic-risc
 
 deployment:
