@@ -1,17 +1,9 @@
-FROM fredhutch/r-shiny-base:latest
-
-RUN apt-get update
-RUN useradd -u 5555 -m -d /home/shiny -c "shiny user" shiny
-ADD . /home/shiny/
-RUN chown -R shiny:shiny /home/shiny 
-WORKDIR /home/shiny
-RUN R -q -e 'install.packages(c("stringi"))'
-RUN R -q -e 'install.packages(c("ggthemes"))'
-RUN R -q -e 'install.packages(c("glue"))'
-RUN R -q -e 'install.packages(c("tidyr"))'
-RUN R -q -e 'install.packages(c("cowplot"))'
-RUN R -q -e 'install.packages(c("viridis"))'
-RUN R -q -e 'install.packages(c("ggExtra"))'
-USER shiny 
-EXPOSE 7777
-CMD Rscript start.R 
+FROM fredhutch/r-shiny-server-base:latest
+EXPOSE 3838
+RUN rm -rf /srv/shiny-server
+ADD . /srv/shiny-server/01_hello
+WORKDIR /srv/shiny-server/01_hello
+RUN chmod -R a+rw /srv/shiny-server
+RUN chmod a+rw /srv/shiny-server/01_hello/*.RData
+COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
+CMD /usr/bin/shiny-server.sh
