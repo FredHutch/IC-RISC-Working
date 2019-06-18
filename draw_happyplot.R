@@ -1,10 +1,5 @@
 #happyplot.R
 
-# this function produces circle plot next to thermometer
-# each time input changes (reactively)
-# the parameter passed to this function is
-# Mario's incidence rate per 1,000 over ten years
-
 draw_happyplot= function(numcases) {
 
 x=seq(1,25, length= 25)
@@ -15,7 +10,7 @@ happyfield= dplyr::rename(happyfield, xcol=x, ycol=y)
 happyfield= arrange(happyfield, desc(ycol), xcol) #descending order for rows
 
 happyfield= mutate(happyfield, newrow=seq(1:1000))  #begins at x,y= 1,40
-happyfield= mutate(happyfield, case= ifelse(newrow>(numcases), 1, 0))  #cases =0; non-cases =1
+happyfield= mutate(happyfield, case= ifelse(newrow>(numcases), 1, 0))  #cases are coded 0; non-cases= 1
 happyfield= mutate(happyfield, case_shape= ifelse(case==1, 21, 19))
 
 # View(happyfield)
@@ -28,7 +23,8 @@ if(numcases>0) {
 # mycolors= c("#cc0000", "black")
 # View((mycolors))
 p= ggplot(happyfield, aes(xcol, ycol))  +
-  geom_point(data= happyfield, mapping= aes(x= xcol, y= ycol, color= factor(case)),
+  geom_point(data= happyfield, mapping= aes(x= xcol, y= ycol, 
+                                            color= factor(case)),
              size= 3.0, shape= happyfield$case_shape)  +
   scale_shape_discrete() +
   scale_colour_manual(values = mycolors) +

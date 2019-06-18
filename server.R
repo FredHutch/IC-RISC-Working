@@ -6,13 +6,13 @@
 # 
 # IC-RISC software is made available for *academic and other non-profit use* under the 2-Clause BSD License:
 #   
-#   Copyright 2019 Thomas L Vaughan
+#   Copyright 2018 Thomas L Vaughan
 # 
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 #   
 #   1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 # 
-#   2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
@@ -26,12 +26,12 @@
 # 
 # For commercial use, contact Fred Hutchinson Cancer Center, Business Development & Strategy (206.667.4304)
 
-#Run the following source files one time
-source("get_functions.R") # reads in most functions and libraries
-source("par.R") # runs once and stores dataframe
-source("incidence_mortality_models.R") # runs once to get parameters into memory
-source("draw_therm.R") #runs once and then reactively (e.g., each time input is changed)
-source("draw_happyplot.R") #runs once and then reactively
+#Read remainer of source files====
+source("get_functions.R") # includes libraries
+source("par.R")
+source("incidence_mortality_models.R")
+source("draw_therm.R")
+source("draw_happyplot.R")
 
 # Begin shinyServer====
 shinyServer(function(input, output) {
@@ -53,7 +53,7 @@ shinyServer(function(input, output) {
     showNotification(includeMarkdown("markdown_files/cf_help.md"),  type= "default", duration= 8)
   })
 
-###############################  OUTPUT MYRISK (thermometer plus circle plot (AKA happy plot)====
+###############################  OUTPUT MYRISK ====
 
   output$myrisk = renderPlot({
       withProgress(expr = {  # Adds progress bar to whole renderplot
@@ -79,7 +79,7 @@ shinyServer(function(input, output) {
         TRUE ~ as.numeric(NA)
         )
 
-      physical.activity= case_when(       # reverses phys activity input since protective
+      physical.activity= case_when(       # reverses phys activity input
         input$exercise== 4 ~ 0,
         input$exercise== 3 ~ 1,
         input$exercise== 2 ~ 2,
@@ -90,20 +90,18 @@ shinyServer(function(input, output) {
       smoking= as.integer(input$cig2)
       reflux= as.integer(input$refluxfreq)
 
-      nsaids= ifelse(input$nsaid==1, 0, 1)    #flips to inverse since protective
-      statins= ifelse(input$statin==1, 0, 1)  #flips to inverse since protective
+      nsaids= ifelse(input$nsaid==1, 0, 1)    #flips to inverse
+      statins= ifelse(input$statin==1, 0, 1)  #flips to inverse
 
       family.history= as.integer(input$famhx)
 
       biopsy.abn= as.integer(input$biopsy)
       segment.length= as.integer(input$segment)
 
-      sim_status= as.integer(input$simstatus)       # sim_status is coded: negative=0; positive=1; unknown = 9
-      
+      sim_status= as.integer(input$simstatus)
       screen.neg= ifelse(input$simstatus==0, 1, 0)  # 1-> has been screened and found to be SIM negative
                                                     # 0-> either not screened or SIM positive
-      
-      screen.neg= ifelse(screen.neg==1, 0, 1)    #this reverses screen.neg because negative screen is "protective" 1= SIM pos or unknown
+      screen.neg= ifelse(screen.neg==1, 0, 1)    #this reverses screen.neg because protective 1= SIM pos or unknown
 
       if(sim_status!= 1) {     #if not SIM positive, then biomarkers must = 0
         biopsy.abn= 0
@@ -152,7 +150,7 @@ shinyServer(function(input, output) {
       mario_RR= exp(mario_ebeta)
 
       mario_IR5= project_risk2(dataToUse$beta, PAR_prod, agenow-62, demog, sim_status, project_yrs)
-
+# View(mario_IR5)
 # Variance estimate (compute_var) (epsilon set in "par.R")
 
       var_est=compute_var(epsilon, dataToUse$beta, PAR_pert, agenow-62, demog, sim_status, project_yrs, dataToUse$betase)
@@ -169,7 +167,6 @@ shinyServer(function(input, output) {
       mario_IR5_lowerCI_therm= max(mario_IR5_lowerCI, 0.50)
 
 # Define colors and shapes and labels====
-      
       if(mario_IR5 > 500) {
         finalrisk= "> 500"
         ntreatc= "> 1 in 2"
@@ -201,7 +198,8 @@ shinyServer(function(input, output) {
 
     risklabel= paste0("Estimated 10-year risk")
     risklabel2= paste0(finalrisk, " per 1,000  ", "(", ntreatc, " people)")
-    
+    # risklabel3= paste0(ntreatc, " people")
+
     mario_gscore= (maxenv- minenv)*0.16+ minenv   # ADJUSTS LEFT-MOST EDGE OF  POINTER
     meme= data.frame(mario_gscore, mario_IR5_therm,     # NEEDS TO BE DATA FRAME TO WORK WITH GGPLOT
                      risklabel, age, mpc,
@@ -240,6 +238,7 @@ shinyServer(function(input, output) {
 
       mytitle= ggdraw() + draw_label(risklabel, x = 0.5, y = 0.8, size = 22, colour= "black") +
         draw_label(risklabel2, x = 0.5, y = .24, size = 20, hjust= 0.5, colour= mycolor) 
+        # draw_label(risklabel3, x = 0.76, y = .24, size = 20, colour= mycolor)
 
       dualplot= ggdraw() +
       draw_plot(p1, 0, .02, 0.46, 0.98) +
@@ -311,6 +310,8 @@ get_rf_plot= function(sim) {
 
   rf_plot = ggplot(rforest0,aes(rr, y= factor(rforest0$rflevel2, levels= rev(rforest0$rflevel2)))) +
     geom_point(size=3, shape=18, colour= ifelse(rforest0$SIM_Status, "blue", "firebrick")) +
+    # geom_errorbarh(aes(xmax = highCI, xmin = lowCI), height = 0.0) +
+    # geom_errorbarh(aes(xmax = ifelse(highCI>maxCI, maxCI, highCI), xmin = lowCI), height = 0.0) +
     geom_errorbarh(aes(xmax = ifelse(highCI>maxCI, maxCI, highCI), xmin = ifelse(lowCI<minCI, minCI, lowCI)), height = 0.0) +
     geom_vline(xintercept = 1, linetype = "longdash", size= 0.8, colour= "blue") +
     scale_x_continuous(trans= "log",

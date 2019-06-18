@@ -1,8 +1,3 @@
-
-
-#### Version 1.1 (17 Jun 2019)
-* Release version for publication (BMC Gastroenterology, 2019) (https://ic-risc.esocan.org)
-
 #### Version 1.01 (5 Dec 2018)
 * Release version for website (https://ic-risc.esocan.org)
 * Updated license
