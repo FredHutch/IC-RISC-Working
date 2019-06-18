@@ -7,6 +7,11 @@ RUN chown -R shiny:shiny /home/shiny
 WORKDIR /home/shiny
 RUN R -q -e 'install.packages(c("stringi"))'
 RUN R -q -e 'install.packages(c("ggthemes"))'
+RUN R -q -e 'install.packages(c("glue"))'
+RUN R -q -e 'install.packages(c("tidyr"))'
+RUN R -q -e 'install.packages(c("cowplot"))'
+RUN R -q -e 'install.packages(c("viridis"))'
+RUN R -q -e 'install.packages(c("ggExtra"))'
 USER shiny 
 EXPOSE 7777
 CMD Rscript start.R 
